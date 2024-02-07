@@ -147,6 +147,9 @@ async function fetchSurvey () {
     if (isConnected()) {
        let inputE =<HTMLInputElement>document.querySelector("#surveyid-value");
        surveyid=parseInt(inputE.value, 10);
+    }else{
+      alert('Pls login using wallet extension');
+      return;
     }
 
     // Define payload with the correct type
@@ -171,11 +174,19 @@ async function fetchSurvey () {
       throw new Error('Failed to fetch data');
     }
 
-    console.log(response);
+    
     // Parse the JSON response
     const jsonData = await response.json();
-
-    
+    console.log(jsonData, jsonData.survey, jsonData.survey.survey.length);
+    if(jsonData && jsonData.survey && jsonData.survey.survey && jsonData.survey.survey.length > 0){
+       let poll = jsonData.survey.survey[0];
+      
+       const statusText = document.querySelector("#p_poll_q");
+       console.log(poll, statusText);
+  if (statusText != null) {
+    statusText.innerHTML = poll.question;
+  }
+    }
 
     // Update state with the fetched data
     // setData(jsonData);
