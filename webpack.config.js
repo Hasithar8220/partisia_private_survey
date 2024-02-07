@@ -9,8 +9,8 @@ function path(path) {
 }
 
 module.exports = (env) => {
-  const port = env.PORT;
 
+  const port = env.PORT;
   const configuration = {
     mode: "development",
     devtool: "eval-cheap-module-source-map",
@@ -50,6 +50,10 @@ module.exports = (env) => {
               "@babel/typescript"
             ]
           }
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|svg)$/,
+          type: "asset/resource"
         }
       ]
     },

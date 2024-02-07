@@ -30,6 +30,9 @@ import {
   updateInteractionVisibility,
 } from "./WalletIntegration";
 
+
+
+
 // Setup event listener to connect to the MPC wallet browser extension
 const connectWallet = <Element>document.querySelector("#wallet-connect-btn");
 connectWallet.addEventListener("click", connectMpcWalletClick);
@@ -56,6 +59,9 @@ addressBtn.addEventListener("click", contractAddressClick);
 
 const ratingBtn = <Element>document.querySelector("#rating-btn");
 ratingBtn.addEventListener("click", ratingClick);
+
+const surveyBtn = <Element>document.querySelector("#surveyid-btn");
+surveyBtn.addEventListener("click", fetchSurvey);
 
 const updateStateBtn = <Element>document.querySelector("#update-state-btn");
 updateStateBtn.addEventListener("click", updateContractState);
@@ -129,6 +135,54 @@ function ratingClick(){
 
 }
 
+interface Payload {
+  key: string;
+  eventcode: string;
+  id: number
+}
+
+async function fetchSurvey () {
+  try {
+    let surveyid=0;
+    if (isConnected()) {
+       let inputE =<HTMLInputElement>document.querySelector("#surveyid-value");
+       surveyid=parseInt(inputE.value, 10);
+    }
+
+    // Define payload with the correct type
+    let payload: Payload = {
+      key: '75dd3300-6f8f-11ec-803e-b9f5a1eecc46',
+      eventcode: 'KCEV'+surveyid,
+      id: surveyid 
+    };
+
+    //alert(payload); return;
+
+    // Make a POST request to your remote API
+    const response = await fetch('http://localhost:3178/api/polls/getpubliceventbyid', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload) // Corrected
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    console.log(response);
+    // Parse the JSON response
+    const jsonData = await response.json();
+
+    
+
+    // Update state with the fetched data
+    // setData(jsonData);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 
 
 /** Action for the compute average salary button */
