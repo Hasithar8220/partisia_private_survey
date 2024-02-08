@@ -1,6 +1,12 @@
 # ui-integration-demo
 
-Demo for how to integrate PBC wallet into a web frontend or dApp.
+Privacy preserving survey submission.
+This sample code will integrate crowdsnap.ai api to load a survey created using crowdsnap.ai platform
+
+1) Respondent can login using their personal MPC wallet and submit a vote
+2) Then enter the smart contract id () 
+3) Enter the survey id () in to get survey textbox to load a survey
+4) Submit the vote
 
 ## Requirements
 
