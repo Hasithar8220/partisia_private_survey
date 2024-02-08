@@ -16,6 +16,10 @@ To be able to run the demo the following setup is required.
 * Google chrome browser to load the app and wallet extension
 * node.js version v.16.15.0 or newer
 
+## Rules
+
+* Survey should have made public at crowdsnap.ai 
+* One MPC account can vote only once, else error will be thrown
 
 
 ## How to run?

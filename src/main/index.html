@@ -51,9 +51,9 @@
 <div id="main-wrapper">
   <div class="site-wrapper-reveal">
           <div class="careers-experts-wrapper">
-                  <div class="container soft-bg" style="max-width: 100vh !important">
+                  <div class="container soft-bg">
 
-<div id="full-screens" ng-controller='AuthController' ng-init="authCheck();"  style="height: 100vh !important;">
+<div id="full-screens" ng-controller='AuthController' ng-init="authCheck();" >
   <div style="text-align: center;">
       <a onclick="location.href='/'">
           <img style="display: inline-block; margin: auto; width: 200px" src="\assets\images\logo\logo_n.svg?1">
@@ -149,22 +149,42 @@
 
 
         <div id="contract-state" class="hidden">
-            <h2 id="state-header">Average Salary State</h2>
+           
+            <h5 id="state-header" class="heading text-center mt-30">Live Status</h5>
             <div id="update-state">
                 <form>
-                    <input class="pure-button pure-button-primary" id="update-state-btn" type="button"
-                           value="Refresh State"/>
+                    <input class="btn-body sec-button md-button md-button md-button" id="update-state-btn" type="button"
+                           value="&#x21bb; Refresh State"/>
                     <input id="refresh-loader" class="loader hidden"/>
                 </form>
             </div>
-            <h3>Administrator</h3>
-            <div id="administrator-value"></div>
-            <h3>Number of inputted salaries</h3>
-            <div id="num-salaries"></div>
-            <h3>Average Salary Result</h3>
-            <div id="average-result"></div>
-            <h3>Number of employees</h3>
-            <div id="num-employees"></div>
+
+            <table class="dataseriestable">
+              <thead>
+                <tr>
+                  <th>Administrator</th>
+                  <th># of inputs</th>
+                  <th># of Respondents</th>
+                  <th>Avg Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr>
+                  <td>
+                    <div id="administrator-value"></div>
+                    </td>
+                    <td>
+                      <div id="num-salaries"></div>
+                      </td>
+                      <td>
+                        <div id="num-employees"></div>
+                        </td>
+                  <td><div id="average-result"></div></td>
+                </tr>
+              </tbody>
+            </table>
+            
+           
         </div>
     </div>
 
