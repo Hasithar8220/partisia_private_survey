@@ -79,15 +79,15 @@
 
             <div id="wallet-connect">
                 <form class="pure-form">
-                    <button class="md-raised md-primary md-accent whitetext toolbtn md-button"
-                            id="wallet-connect-btn">Login using MPC Wallet
+                    <input type="button" value="Login using MPC Wallet" class="md-raised md-primary md-accent whitetext toolbtn md-button"
+                            id="wallet-connect-btn">
                     </button>
                 </form>
             </div>
 
             <div id="wallet-disconnect" class="hidden">
                 <form>
-                    <input class="pure-button pure-button-primary" id="wallet-disconnect-btn" type="button"
+                    <input class="multiselect-label" id="wallet-disconnect-btn" type="button"
                            value="Logout"/>
                 </form>
             </div>
@@ -104,7 +104,7 @@
               <br/>
               <div id="browser-link"></div>
       
-              <div id="contract-interaction">
+              <div id="contract-interaction" class="hidden">
                   <div id="divgetsurvey">
                       <form onSubmit="return false;" class="pure-form">
                           <input id="surveyid-value" name="surveyid-value" type="text" class="md-input" style="height: 38px;"/>

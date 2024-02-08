@@ -92,7 +92,7 @@ function contractAddressClick() {
     // Update the contract state.
     setContractAddress(address);
     updateInteractionVisibility();
-    updateContractState();
+    //updateContractState();
   }
 }
 

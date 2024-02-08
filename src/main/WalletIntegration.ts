@@ -141,6 +141,7 @@ const connectMetaMask = async (): Promise<ConnectedWallet> => {
  * Function for connecting to the MPC wallet and setting the connected wallet in the app state.
  */
 export const connectMpcWalletClick = () => {
+  console.log('connectMpcWalletClick');
   // Call Partisia SDK to initiate connection
   const partisiaSdk = new PartisiaSdk();
   handleWalletConnect(
@@ -151,7 +152,9 @@ export const connectMpcWalletClick = () => {
         dappName: "Wallet integration demo",
         chainId: "Partisia Blockchain Testnet",
       })
-      .then(() => {
+      .then((x) => {
+        console.log(x);
+        console.log(partisiaSdk);
         const connection = partisiaSdk.connection;
         if (connection != null) {
           // User connection was successful. Use the connection to build up a connected wallet
@@ -291,6 +294,7 @@ const handleWalletConnect = (connect: Promise<ConnectedWallet>) => {
   setConnectionStatus("Connecting...");
   connect
     .then((userAccount) => {
+      console.log('handleWalletConnect',userAccount);
       setAccount(userAccount);
 
       // Fix UI
