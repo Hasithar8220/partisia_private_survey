@@ -1,6 +1,6 @@
-# ui-integration-demo
+# Privacy preserving survey submission via crowdsnap.ai using partisia MPC
 
-Privacy preserving survey submission.
+
 This sample code will integrate crowdsnap.ai api to load a survey created using crowdsnap.ai platform
 
 1) Respondent can login using their personal MPC wallet and submit a vote
