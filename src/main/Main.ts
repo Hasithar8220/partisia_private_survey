@@ -37,6 +37,12 @@ import {
 const connectWallet = <Element>document.querySelector("#wallet-connect-btn");
 connectWallet.addEventListener("click", connectMpcWalletClick);
 
+// Setup event listeners for rating buttons
+const ratingButtons = document.querySelectorAll<HTMLElement>(".emoji-image");
+ratingButtons.forEach((button: HTMLElement, index: number) => {
+    button.addEventListener("click", () => rate(index + 1)); // Ratings start from 1, so adding 1 to index
+});
+
 
 // Setup event listener to connect to the MetaMask snap
 //const pkConnect = <Element>document.querySelector("#private-key-connect-btn");
@@ -57,8 +63,8 @@ disconnectWallet.addEventListener("click", disconnectWalletClick);
 const addressBtn = <Element>document.querySelector("#address-btn");
 addressBtn.addEventListener("click", contractAddressClick);
 
-const ratingBtn = <Element>document.querySelector("#rating-btn");
-ratingBtn.addEventListener("click", ratingClick);
+// const ratingBtn = <Element>document.querySelector("#rating-btn");
+// ratingBtn.addEventListener("click", ratingClick);
 
 const surveyBtn = <Element>document.querySelector("#surveyid-btn");
 surveyBtn.addEventListener("click", fetchSurvey);
@@ -84,7 +90,7 @@ function contractAddressClick() {
     const currentAddress = <HTMLInputElement>document.querySelector("#current-address");
     currentAddress.innerHTML = `Smart Contract Address: ${address}`;
     const browserLink = <HTMLInputElement>document.querySelector("#browser-link");
-    browserLink.innerHTML = `<a href="https://browser.testnet.partisiablockchain.com/contracts/${address}" target="_blank">Browser link</a>`;
+    browserLink.innerHTML = `<a style="text-decoration: underline !important;" href="https://browser.testnet.partisiablockchain.com/contracts/${address}" target="_blank">View contract details-></a>`;
 
     // Reset abi and engine keys
     setContractAbi(undefined);
@@ -96,23 +102,23 @@ function contractAddressClick() {
   }
 }
 
-function ratingClick(){
+// Function to handle rating clicks
+function rate(rating: number) {
+  // Call the ratingClick method with the provided rating
+  ratingClick(rating);
+}
 
-  console.log('clicked', isConnected());
+
+
+function ratingClick(no: number){
+
+  console.log('clicked', isConnected(), no);
   
   if (isConnected()) {
-    const rating = <HTMLInputElement>document.querySelector("#rating-value");
-    if (isNaN(parseInt(rating.value, 10))) {
-      // Validate that amount is a number
-      console.error("Salary must be a number");
-    } else {
-
-      console.log('clicked', isConnected(),rating.value);
-      // All fields validated, add salary.
-
+ 
       // If the user has inputted a correct average salary address this should be defined.
       const api = getAverageApi();
-
+      console.log(api);
       if (api !== undefined) {
         // Add salary via Average Salary api
         const browserLink = <HTMLInputElement>(
@@ -120,8 +126,9 @@ function ratingClick(){
         );
         browserLink.innerHTML = '<br><div class="loader"></div>';
         api
-          .addRating(parseInt(rating.value, 10))
+          .addRating(no)
           .then((transactionHash) => {
+            console.log(transactionHash);
             browserLink.innerHTML = `<br><a href="https://browser.testnet.partisiablockchain.com/transactions/${transactionHash}" target="_blank">Transaction link in browser</a>`;
           })
           .catch((msg) => {
@@ -129,7 +136,7 @@ function ratingClick(){
           });
       }
 
-    }
+    
 
   }
 
@@ -182,7 +189,10 @@ async function fetchSurvey () {
        let poll = jsonData.survey.survey[0];
       
        const statusText = document.querySelector("#p_poll_q");
-       console.log(poll, statusText);
+       const crowdsnap_survey = <HTMLElement>document.querySelector("#crowdsnap_survey");
+       crowdsnap_survey.classList.remove("hidden");
+       //crowdsnap_survey
+       //console.log(poll, statusText);
   if (statusText != null) {
     statusText.innerHTML = poll.question;
   }
