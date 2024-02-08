@@ -5,8 +5,8 @@ This sample code will integrate crowdsnap.ai api to load a survey created using 
 
 1) Respondent can login using their personal MPC wallet 
 2) Then enter the smart contract id (03b16e903f4b3dd2676e57f32697b5a48d4341343c) 
-3) Enter the survey id (934834) in to get survey textbox to load a survey
-4) Submit the vote
+3) Enter the survey id (934834) to load a survey
+4) Click on emoji to Submit the vote
 
 ## Requirements
 
@@ -31,4 +31,4 @@ npm install
 npm start
 ```
 
-and view the demo at localhost:8080
+and view the demo at localhost:8081
